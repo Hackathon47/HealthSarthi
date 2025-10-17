@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Sarthi - AI Crisis Coordinator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="sense-controls" class="card">
+            <h1 class="logo">🤖 Health Sarthi</h1>
+            <h2>SENSE: Data Acquisition</h2>
+
+            <div class="control-group">
+                <label for="city-select">Select Indian City:</label>
+                <select id="city-select"></select>
+            </div>
+
+            <div id="aqi-gauge-container" class="aqi-gauge-container">
+                <div id="aqi-gauge" class="aqi-gauge" style="border-color: #888; box-shadow: 0 0 15px 1px rgba(136, 136, 136, 0.2);">
+                    <div id="aqi-value" class="aqi-value">---</div>
+                    <div class="aqi-label">Live AQI</div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Live Social Chatter (Count: <span id="chatter-count">---</span>)</label>
+                <div id="tweets-box" class="tweets-box">
+                    <p class="no-chatter">Press RUN AGENT to start.</p>
+                </div>
+            </div>
+
+            <div class="control-group checkbox-group">
+                <label><input type="checkbox" id="festival-check"> Context: Festival Day?</label>
+                <label><input type="checkbox" id="flood-check"> Context: Flood Alert?</label>
+            </div>
+            
+            <div class="control-group">
+                <label for="email-input">Demo Staff Email:</label>
+                <input type="email" id="email-input" value="your-teammate@gmail.com" required>
+            </div>
+            
+            <button id="run-agent-btn">🚀 RUN AGENT</button>
+        </div>
+
+        <div id="output-section" class="card">
+            <h2>THINK & ACT: Agent Response</h2>
+            <div id="status-message" style="color:var(--accent-blue); font-weight:bold;">Ready. Set up inputs and run agent.</div>
+            
+            <h3 style="margin-top: 30px;">THINK: AI Analysis</h3>
+            <div id="analysis-output" class="analysis-box">
+                <p>Waiting for data to analyze...</p>
+            </div>
+
+            <h3 style="margin-top: 30px;">⚡ ACT: Actions Log</h3>
+            <div id="actions-log" class="actions-log">
+                </div>
+
+            <details id="raw-json-details">
+                <summary id="raw-json-summary">Show Raw AI Plan (JSON)</summary>
+                <pre id="raw-json-pre"></pre>
+            </details>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

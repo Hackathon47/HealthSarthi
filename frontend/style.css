@@ -1,0 +1,276 @@
+/* frontend/style.css */
+
+/* --- 1. Global & Theme (3D/Glassy) --- */
+:root {
+    --bg-color: #2c2c3e;
+    --card-bg: #37374a;
+    --accent-blue: #00bfff;
+    --accent-purple: #9a4dff;
+    --text-color: #f0f0f0;
+    --shadow-light: rgba(255, 255, 255, 0.05);
+    --shadow-dark: rgba(0, 0, 0, 0.3);
+    --success: #00e090;
+    --error: #ff4d61;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+/* --- 2. Layout & Cards --- */
+.container {
+    display: grid;
+    grid-template-columns: 350px 1fr; /* Fixed left, fluid right */
+    gap: 30px;
+    max-width: 1400px;
+    width: 100%;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid var(--shadow-light);
+    box-shadow: 
+        0 10px 30px var(--shadow-dark), 
+        inset 0 1px 0 var(--shadow-light);
+}
+
+/* --- 3. Header & Typography --- */
+/* frontend/style.css */
+
+/* ... other styles ... */
+
+.logo {
+    font-size: 2.2em;
+    font-weight: 800;
+    margin-bottom: 25px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    
+    /* VENDOR PREFIXED (For compatibility - what the warning is about) */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* STANDARD CSS (To silence the warning and ensure future compatibility) */
+    background-clip: text; /* <-- ADD THIS LINE */
+    color: transparent;    /* <-- ADD THIS LINE (Standard fill-color equivalent) */
+}
+h2 {
+    color: var(--accent-blue);
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- 4. Inputs and Controls --- */
+select, input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--text-color);
+    font-size: 1em;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1em;
+}
+
+/* --- 5. AQI Gauge (The Visual Centerpiece) --- */
+.aqi-gauge-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 30px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.aqi-gauge {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 10px solid; /* Dynamic color applied here */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--card-bg);
+    z-index: 2;
+    transition: all 0.5s ease;
+}
+.aqi-value {
+    font-size: 3.5em;
+    font-weight: 900;
+}
+.aqi-label {
+    font-size: 0.9em;
+    text-transform: uppercase;
+    color: var(--text-color);
+}
+/* Animated Ring (Unchanged from previous successful version) */
+.aqi-gauge-container::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+/* Keyframes and classes (omitted here for brevity, but include the full set from your last successful CSS) */
+/* Apply dynamic classes (good, moderate, hazardous) via JS */
+
+
+/* --- 6. Live Chatter Box --- */
+.tweets-box {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 10px;
+    max-height: 120px; /* Contain height */
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.tweet-item {
+    font-size: 0.85em;
+    padding: 5px 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+.no-chatter {
+    color: #999;
+}
+
+
+/* --- 7. Button --- */
+button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 191, 255, 0.3);
+    transition: all 0.3s ease;
+}
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 191, 255, 0.5);
+}
+button:disabled {
+    background: #555;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+
+/* --- 8. Right Column Output --- */
+#output-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.analysis-box {
+    background: #44445c; /* Slightly different background for contrast */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border-left: 5px solid var(--accent-blue);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.actions-log {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.log-item {
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+.log-item.success {
+    background-color: var(--success);
+    color: #000;
+    border: 1px solid #00c070;
+}
+.log-item.error {
+    background-color: var(--error);
+    color: #000;
+    border: 1px solid #c04050;
+}
+.log-item.warn {
+    background-color: #ffc107;
+    color: #000;
+    border: 1px solid #e0b000;
+}
+
+/* --- Hide/Show JSON --- */
+#raw-json-details {
+    margin-top: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+#raw-json-summary {
+    cursor: pointer;
+    padding: 10px 15px;
+    color: var(--accent-blue);
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px 8px 0 0;
+}
+#raw-json-pre {
+    background: #111;
+    color: #9cdcfe;
+    padding: 15px;
+    border-radius: 0 0 8px 8px;
+    overflow-x: auto;
+    max-height: 250px;
+}
+
+/* Media Query (Mobile Responsiveness) */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+    body {
+        padding: 15px;
+    }
+}
