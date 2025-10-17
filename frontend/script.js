@@ -1,6 +1,6 @@
 // frontend/script.js
 
-const BACKEND_URL = "http://localhost:5000"; // Use localhost for local testing/port forwarding
+const BACKEND_URL = ""; // Use localhost for local testing/port forwarding
 
 // --- I. UI Element References ---
 const ui = {
